@@ -20,19 +20,6 @@ describe("TodoList Test", function () {
 
       expect(await todoList.owner()).to.equal(owner);
     });
-
-    
-    describe("TodoList Test", function () {
-      // Reusable async method for deployment
-      async function deployTodoListFix() {
-        // Contracts are deployed using the first signer/account by default
-        const [owner, otherAccount] = await hre.ethers.getSigners();
-    
-        const TodoList = await hre.ethers.getContractFactory("TodoList");
-        const todoList = await TodoList.deploy();
-    
-        return { todoList, owner, otherAccount };
-      }
     
       describe("Deployment", () => {
         it("Should check if contract is deployed by the owner", async function () {
@@ -136,8 +123,6 @@ describe("TodoList Test", function () {
       const description = "To defend my project";
       await todoList.connect(owner).createTodo(title, description);
 
-    
-
       const index = 0;
       const allTodos = await todoList.getAllTodo();
       const currentTodo = allTodos[index];
@@ -148,4 +133,3 @@ describe("TodoList Test", function () {
       expect(currentDescription).to.equal(description);
     });
   });
-});
